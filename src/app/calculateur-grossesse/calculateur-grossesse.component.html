@@ -1,0 +1,114 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Dates des dernières règles</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="lastPeriodDate">Date des dernières règles</label>
+            <input type="date" class="form-control" id="lastPeriodDate" [(ngModel)]="lastPeriodDate">
+          </div>
+          <button class="btn btn-primary" (click)="calculate()">Calculer</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Progression de la grossesse</div>
+        <div class="card-body">
+          <div class="progress mb-3">
+            <div class="progress-bar" role="progressbar" [style.width.%]="progressValue">
+              {{progressValue}}%
+            </div>
+          </div>
+          <div class="weeks">
+            <p>Semaines de grossesse: {{pregnancyWeeks}}+{{pregnancyDays}} jours</p>
+            <p>Semaines d'aménorrhée: {{amenorrheaWeeks}}+{{amenorrheaDays}} jours</p>
+            <p>Mois de grossesse: {{pregnancyMonths}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">Dates importantes</div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Semaines d'aménorrhée</th>
+                <th>Semaines de grossesse</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let date of pregnancyDates">
+                <td>{{ date | date:'dd/MM/yyyy' }}</td>
+                <td>{{ getAmenorrheaWeeks(date) }}</td>
+                <td>{{ getPregnancyWeeks(date) }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Dates des dernières règles</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="lastPeriodDate">Date des dernières règles</label>
+            <input type="date" class="form-control" id="lastPeriodDate" [(ngModel)]="lastPeriodDate">
+          </div>
+          <button class="btn btn-primary" (click)="calculate()">Calculer</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Progression de la grossesse</div>
+        <div class="card-body">
+          <div class="progress mb-3">
+            <div class="progress-bar" role="progressbar" [style.width.%]="progressValue">
+              {{progressValue}}%
+            </div>
+          </div>
+          <div class="weeks">
+            <p>Semaines de grossesse: {{pregnancyWeeks}}+{{pregnancyDays}} jours</p>
+            <p>Semaines d'aménorrhée: {{amenorrheaWeeks}}+{{amenorrheaDays}} jours</p>
+            <p>Mois de grossesse: {{pregnancyMonths}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Dates</th>
+            <th>Semaines d'aménorrhées</th>
+            <th>Semaines de grossesse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of history">
+            <td>{{item.date | date: 'dd/MM/yyyy'}}</td>
+            <td>{{item.amenorrheaWeeks}}+{{item.amenorrheaDays}} jours</td>
+            <td>{{item.pregnancyWeeks}}+{{item.pregnancyDays}} jours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->
